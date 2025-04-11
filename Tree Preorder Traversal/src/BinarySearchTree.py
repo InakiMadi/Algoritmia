@@ -1,5 +1,5 @@
 from src.Node import Node
-from typing import Optional, Self
+from typing import Optional
 
 
 class BinarySearchTree:
