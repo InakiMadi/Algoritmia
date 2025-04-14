@@ -1,11 +1,5 @@
 # Hard - Problem solving (Advanced)
 
-## Installation
-
-First install this package with:
-
-``pip install -e .``
-
 ## Problem
 
 You are given an array with 64-bit integers: d[0], d[1], ..., d[n-1].
@@ -135,3 +129,60 @@ S = 64 + 64 + 63 + 63 + 63 + 63 + 62 + 62 = 504
 ### URL
 
 https://www.hackerrank.com/challenges/subset-component/
+
+## Some explanation in proposed solution (Spoilers)
+
+Number of connected components is the number of vertices if, in binary, there is no 1s or only one 1. In other words,
+when there is no edge.
+
+Else, it is the number of vertices - (number of 1s in binary - 1).
+
+(number of 1s - 1) because it is the number of edges ONLY for the outline/contour, without closing.
+
+```
+Example: 15 (in binary 1111) has (number of vertices - 3) components (61).
+Edges:
+  (0,1), (0,2), (0,3),
+         (1,2), (1,3),
+                (2,3).
+However, there are edges that are not impacting the connected components, as they were connected before adding it.
+Thus, the only important edges are the ones of the outline/contour. Thus:
+Outline edges:
+  (0,1), (1,2), (2,3), (3,0).
+For example. However, the "closing edge", that is the last one, isn't impacting the connected components.
+Thus, we can remove it.
+Outline edges without closing:
+  (0,1), (1,2), (2,3).
+We can see there are as many outline edges without closing as (number of 1s in binary - 1).
+And for each one of this outline edges without closing, two components are being connected to one component.
+```
+
+For a subset of several numbers, same discussion as before, but now the binary representation is the OR of all the
+binary reprs.,
+except the representations with only one 1 (again, no edges, but with OR can create a new undesirable edge).
+
+```
+Example:
+  {2,5} should give the same components as {5}; as 2 in binary doesn't have any edges.
+  However, if we do 2 OR 5, we get 7. And {7} and {5} have different amount of components.
+  Thus, we need to remove cases with zero 1s or one 1 before doing OR.
+```
+
+It is the OR of all numbers in binary because it is the number of edges ONLY for the outline. If they were
+separated, they are together due to definition of the problem, so no need to subtract any more 1s. If
+they touch, it's again simply calculating the number of edges of the outline/contour (without closing).
+
+       Example:
+            {3,21}.
+              3 -> (0,1). Components: 64 - 1 = 63. (Two 1s in binary).
+              21 -> (0,2), (2,4), (0,4). For components, last one didn't matter. So, without closing,
+                    (0,2), (2,4). Components: 64 - 2 = 62. (Three 1s in binary).
+              [3,21] can be seen as -> (0,1), (0,2), (2,4). (3 | 21 = 25. Four 1s in binary).
+                                     Components: 64 - 3 = 61.
+            
+       Another example:
+            {Upwards triangle, downwards triangle}.
+              Joint: They touch only in one point (height point of each).
+              Connected components: Calculate the edges of the outline of the joint is the same as calculating the edges
+              of the outline of the uppercase greek letter Sigma. And we can get Sigma representation calculating the
+              OR of the triangles.

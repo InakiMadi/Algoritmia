@@ -10,7 +10,7 @@ def read(fname):
 setup(
     name="Subset_Component",
     version="0.0.1",
-    author="Iñaki Madinabeitia",
+    author="Inaki Madinabeitia",
     description="Subset Component",
     license="GNU",
     keywords="",
