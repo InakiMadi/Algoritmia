@@ -1,6 +1,6 @@
-# Exercise
+# Hard - Problem solving (Advanced)
 
-You are given an array with 64-bit integers: .
+You are given an array with 64-bit integers: d[0], d[1], ..., d[n-1].
 
 BIT(x, i) = (x >> i) & 1, where is the i^{th} lower bit of x in binary form. If we regard every bit as a vertex of a
 graph G, there is an undirected edge between vertices i and j if there is a value k such that BIT(d[k], i) == 1 && BIT(
@@ -96,10 +96,9 @@ connected-components = 64.
 every node is a connected-component by itself => Number of connected-components = 64.
 
 {5}
-=> The Binary Representation of 5 is 00000101. There is a bit at the 0th and 2nd position. => So there is an edge: (0,
-
-2) in the graph => There is one component with a pair of nodes (0,2) in the graph. Apart from that, all remaining 62
-   vertices are indepenent components of one node each (1,3,4,5,6...63) => Number of connected-components = 63.
+=> The Binary Representation of 5 is 00000101. There is a bit at the 0th and 2nd position. => So there is an edge: (0,2)
+in the graph => There is one component with a pair of nodes (0,2) in the graph. Apart from that, all remaining 62
+vertices are indepenent components of one node each (1,3,4,5,6...63) => Number of connected-components = 63.
 
 {9}
 => The Binary Representation of 9 is 00001001. => There is a 1-bit at the 0th and 3rd position in this binary
@@ -125,3 +124,6 @@ independent components
 
 S = 64 + 64 + 63 + 63 + 63 + 63 + 62 + 62 = 504
 
+### URL
+
+https://www.hackerrank.com/challenges/subset-component/
