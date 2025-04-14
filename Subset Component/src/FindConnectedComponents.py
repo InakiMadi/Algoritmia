@@ -74,11 +74,11 @@ def how_many_subsets(count_numbers: int) -> int:
 def find_connected_components(numbers: List[int]) -> int:
     subsets_amount = how_many_subsets(len(numbers))
     total_sum = 64 * subsets_amount
-    for i in range(1, subsets_amount):
+    for subset_binary in range(1, subsets_amount):
         # Find the specific subset
         subset = []
         for lower_bit in range(len(numbers)):
-            if is_bit_one(i, lower_bit):
+            if is_bit_one(subset_binary, lower_bit):
                 subset.append(numbers[lower_bit])
         # Count components for the found subset
         num_components = count_components(subset)
