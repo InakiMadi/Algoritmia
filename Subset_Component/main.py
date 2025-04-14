@@ -14,6 +14,8 @@ def print_success_failure(num_test: int, expected_output: any, provided_output: 
 
 
 if __name__ == '__main__':
+    NUM_VERTICES = 64
+
     with open('examples.txt', 'r') as f_in:
         num_examples = int(f_in.readline())
 
@@ -23,7 +25,7 @@ if __name__ == '__main__':
             d = list(map(int, f_in.readline().rstrip().split()))
 
             start = time.perf_counter()
-            components = find_connected_components(d)
+            components = find_connected_components(d, 64)
             end = time.perf_counter()
             time_dif = end - start
 
