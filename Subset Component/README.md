@@ -1,5 +1,13 @@
 # Hard - Problem solving (Advanced)
 
+## Installation
+
+First install this package with:
+
+``pip install -e .``
+
+## Problem
+
 You are given an array with 64-bit integers: d[0], d[1], ..., d[n-1].
 
 BIT(x, i) = (x >> i) & 1, where is the i^{th} lower bit of x in binary form. If we regard every bit as a vertex of a
